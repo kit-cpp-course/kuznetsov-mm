@@ -9,6 +9,7 @@ bool ArgumentsValidator::Unique(string param) {
 	return true;
 }
 
+
 bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 	GlobalData& gb = GlobalData::getObject();
 
@@ -31,7 +32,7 @@ bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 	//number of parameters for catalogization 
 	size_t currentArg = atoi(args[3]);
 
-	//checking if the numer of parameters is correct and creating of the array of params if it is so
+	//checking if the number of the parameters is correct and creating of the array of params if it is so
 	if (currentArg >= 0 && currentArg <= gb.MAX_NUMBER_OF_PARAMS) {
 		gb.numberOfParams = currentArg;
 		gb.params = new string[gb.numberOfParams];
@@ -53,7 +54,14 @@ bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 	}
 
 	return true;
+}
 
+bool ArgumentsValidator::IsAudio(string ext) {
+	const size_t numberOfValidExt = 9;
+	string validExt[numberOfValidExt] = {".mp3",".wav",".flac",".ogg",".aiff",".m4a",".m4a", ".mp4",".ape"};
 
+	for (size_t i = 0; i < numberOfValidExt; i++)
+		if (ext == validExt[i]) return true;
 
+	return false;
 }

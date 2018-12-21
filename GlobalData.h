@@ -5,7 +5,10 @@ using namespace std;
 class GlobalData {
 	
 	GlobalData() = default;
-	~GlobalData() = default;
+	~GlobalData() {
+		delete[] params;
+		delete[] PARAMETERS_IN_ORDER;
+	}
 
 	GlobalData& operator=(const GlobalData&) = delete;
 	GlobalData(const GlobalData&) = delete;

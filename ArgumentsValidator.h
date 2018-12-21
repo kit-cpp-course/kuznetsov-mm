@@ -15,9 +15,13 @@ class ArgumentsValidator
 
 	//checking for the uniqueness of the parameter
 	static bool Unique(string param);
+
 public:
 
 	//checking if the args that were set by a user are correct 
 	static bool CheckAndSetArgs(size_t size, char ** args); 
+
+	//checking if the file is an audio file from which the metadata could be taken
+	static bool IsAudio(string extension);
 };
 
