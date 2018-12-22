@@ -30,10 +30,15 @@ int main(size_t count, char ** args) {
 	//filling the vector of the songs by the audio files with the extensions of the popular audio files
 	for (const auto & entry : fs::directory_iterator(gb.SourceDirectory))
 	{
-		string path = entry.path().string(),
-			   ext = entry.path().extension().string();
-		if (ArgumentsValidator::IsAudio(ext)) songs.push_back(shared_ptr<File>(new File(path)));
-			
+		string path = entry.path().string();
+		string ext = entry.path().extension().string();
+		if (ext == ".mp3" || 
+			ext == ".wav" || 
+			ext == ".aif" || 
+			ext == ".mid" || 
+			ext == ".ogg" ||
+			ext ==".flac")
+			songs.push_back(shared_ptr<File>(new File(path)));
 	}
 
 	//creating the directory where other folders and files will be stored (the root of the tree)
@@ -48,8 +53,8 @@ int main(size_t count, char ** args) {
 
 	//creating the tree in the filesystem of Windows
 	tree->CreateTheTreeInWindows();
-		
-	delete tree;
+
 	cout << "Music has been succesfully cataloged!" << endl;
+	delete tree;
 	return 0;
 }
