@@ -16,7 +16,6 @@ void File::SetParams() {
 		}
 		if (gb.params[i] == "year") {
 			this->params[i] = to_string(f.tag()->year());
-			cout << params[i] << endl;
 			continue;
 		}
 		if (gb.params[i] == "genre") {
@@ -28,4 +27,17 @@ void File::SetParams() {
 			continue;
 		}
 	}
+}
+string File::GetNameFromPath() {
+	return path.substr(path.find_last_of('\\') + 1);
+}
+string File::GetExtensionFromPath() {
+	return path.substr(path.find_last_of('.') + 1);
+}
+
+File::File(string path) {
+	this->path = path;
+	name = GetNameFromPath();
+	extension = GetExtensionFromPath();
+	SetParams();
 }

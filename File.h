@@ -5,36 +5,34 @@
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
 using namespace std;
+
+/*
+ * Class File describes a file in a filesystem, it has such fields as: an extension and parameters.
+ * And in also contains methods to manupulate the data (set parameters, get parameters...)
+ */
 class File : public IComponent
 {
+	string extension;
 	
-	string GetNameFromPath() {
-		return path.substr(path.find_last_of('\\') + 1);
-	}
+	//inludes the name of the artist, album, genre, year 
+	string* params;
 
+	string GetNameFromPath();
 	//getting the extension of the file from its path in the filesystem of Windows
-	string GetExtensionFromPath() {	
-		return path.substr(path.find_last_of('.') + 1);
-	}
+	string GetExtensionFromPath();
 	//setting of the parameters of the file (artist, album, year, genre)
 	void SetParams();
 
-	string extension;
-public:
-
-	//inludes the name of the artist, album, genre, year 
-	string* params;
 	
+public:
+			
 	File() {};
+	File(string path);
 
-	File(string path){
-		this->path = path;
-		name = GetNameFromPath();
-		extension = GetExtensionFromPath();		
-		SetParams();
-	}
 	bool IComponent::isFile() const { return true; }
 	
+	string* GetParam() { return params; }
+
 	~File() { 
 		delete[] params; 
 	};

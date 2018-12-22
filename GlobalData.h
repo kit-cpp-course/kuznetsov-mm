@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 using namespace std;
-
+/*
+ * Class GlobalData is needed to contain the data which is used in the whole project.
+ * In general, it contains the data, which was inputted by a user and some constants. 
+ */
 class GlobalData {
 	
 	GlobalData() = default;

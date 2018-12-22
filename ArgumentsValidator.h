@@ -2,19 +2,20 @@
 #include "stdafx.h"
 #include "GlobalData.h"
 
-
 namespace fs = std::experimental::filesystem;
-
+/*
+ * Class ArgumentsValidator is needed to check the data, which was introduced by a user for correctness
+ */
 class ArgumentsValidator
-{		
-	ArgumentsValidator() = default;
-	~ArgumentsValidator() = default;
-	
+{			
 	//checking if the path is correct (if it exists)
 	static bool CheckPath(string path); 
 
 	//checking for the uniqueness of the parameter
 	static bool Unique(string param);
+
+	//checking the params and filling the array of params with them if they are correct
+	static bool CheckAndFillTheArrayOfParams(char** args, size_t size, size_t startNumber);
 
 public:
 

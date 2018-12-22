@@ -3,10 +3,15 @@
 #include "Directory.h"
 #include "File.h"
 
-
+/*
+ * Class Tree is needed to create a tree of data.
+ * In a particular case it creats and stores a tree of directories and files.
+ * A tree in this case means a structure of directories that inludes files and other directories inside.
+ * This class can create the tree inside the program and also in the filesystem of Windows
+ */
 class Tree
 {
-	//nesing depth of the tree 
+	//nesting depth of the tree 
 	int depth;
 	//the root of the tree
 	shared_ptr<Directory> root;

@@ -50,6 +50,6 @@ int main(size_t count, char ** args) {
 	tree->CreateTheTreeInWindows();
 		
 	delete tree;
-	cout << "Music has been succesfully cataloged!" << endl;	
+	cout << "Music has been succesfully cataloged!" << endl;
 	return 0;
 }
