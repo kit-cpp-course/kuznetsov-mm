@@ -28,7 +28,7 @@ int main(size_t count, char ** args) {
 
 	
 	//filling the vector of the songs by the audio files with the extensions of the popular audio files
-	for (const auto & entry : fs::directory_iterator(gb.SourceDirectory))
+	for (const auto & entry : fs::recursive_directory_iterator(gb.SourceDirectory))
 	{
 		string path = entry.path().string();
 		string ext = entry.path().extension().string();
