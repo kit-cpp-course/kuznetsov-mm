@@ -54,8 +54,8 @@ bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 }
 
 bool ArgumentsValidator::IsAudio(string ext) {
-	const size_t numberOfValidExt = 9;
-	string validExt[numberOfValidExt] = {".mp3",".wav",".flac",".ogg",".aiff",".m4a",".m4a", ".mp4",".ape"};
+	const size_t numberOfValidExt = 8;
+	string validExt[numberOfValidExt] = {".mp3",".wav",".flac",".ogg",".aiff",".m4a",".mp4",".ape"};
 
 	for (size_t i = 0; i < numberOfValidExt; i++) {
 		if (ext == validExt[i]) return true;
