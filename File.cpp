@@ -6,6 +6,7 @@ void File::SetParams() {
 	this->params = new string[gb.numberOfParams];
 	for (size_t i = 0; i < gb.numberOfParams; i++)
 	{
+		if (f.tag() == nullptr) continue;
 		if (gb.params[i] == "artist") {
 			this->params[i] = f.tag()->artist().toCString();
 			continue;
@@ -18,7 +19,7 @@ void File::SetParams() {
 			this->params[i] = to_string(f.tag()->year());
 			continue;
 		}
-		if (gb.params[i] == "genre") {
+		if (gb.params[i] == "genre") {			
 			this->params[i] = f.tag()->genre().toCString();
 			int indexOfSlash = params[i].find_first_of('/');
 			//in the case, when the genre is written as: "Hip-hop / Rap", it is impossible to create the folder
