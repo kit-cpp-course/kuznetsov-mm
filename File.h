@@ -4,7 +4,7 @@
 #include "IComponent.h"
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
-using namespace std;
+
 
 /*
  * Class File describes a file in a filesystem, it has such fields as: an extension and parameters.
@@ -12,26 +12,34 @@ using namespace std;
  */
 class File : public IComponent
 {
-	string extension;
+	//an extension of the file
+	std::string extension;
 	
-	//inludes the name of the artist, album, genre, year 
-	string* params;
+	//includes the name of the artist, album, genre, year 
+	std::string* params;
 
-	string GetNameFromPath();
+	//getting the name of the file from its path
+	std::string GetNameFromPath();
+
 	//getting the extension of the file from its path in the filesystem of Windows
-	string GetExtensionFromPath();
+	std::string GetExtensionFromPath();
+
 	//setting of the parameters of the file (artist, album, year, genre)
 	void SetParams();
 
 	
 public:
-			
+	
+	//default constructor
 	File() {};
-	File(string path);
+
+	//constructor which takes a path as a parameter
+	File(std::string path);
 
 	bool IComponent::isFile() const { return true; }
 	
-	string* GetParam() { return params; }
+	//return the array of the parameters of the object
+	std::string* GetParam() { return params; }
 
 	~File() { 
 		delete[] params; 

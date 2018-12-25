@@ -1,5 +1,5 @@
 #include "Tree.h"
-
+using namespace std;
 
 void Tree::AddRecursive(shared_ptr<Directory>& currentDir, shared_ptr<File>& file, size_t counter) {
 
@@ -14,7 +14,7 @@ void Tree::AddRecursive(shared_ptr<Directory>& currentDir, shared_ptr<File>& fil
 	}
 	for (size_t i = 0; i < dirs.size(); i++) {
 		//checking if the folder with the required name (the name of the current param of the file) exists
-		if (file->GetParam()[counter] == dirs[i]->name) {			
+		if (file->GetParam()[counter] == dirs[i]->GetName()) {			
 			//going inside the folder, if the folder with the required name was found
 			AddRecursive(dirs[i],file, counter + 1);
 			return;
@@ -22,7 +22,7 @@ void Tree::AddRecursive(shared_ptr<Directory>& currentDir, shared_ptr<File>& fil
 	}
 	
 	//creating the directory if the folder with the required name wasn`t found 
-	shared_ptr<Directory> newDir(new Directory(currentDir->path + '\\' + file->GetParam()[counter]));
+	shared_ptr<Directory> newDir(new Directory(currentDir->GetPath() + '\\' + file->GetParam()[counter]));
 	//adding the folder to the vector of folders
 	currentDir->Add(newDir);
 	//going inside the directory which has been just created
@@ -39,11 +39,11 @@ void Tree::CreateRecursive(shared_ptr<Directory>& currentDir) {
 	vector<shared_ptr<File>>& files = currentDir->GetFiles();
 
 	//creating the directory in the filesystem of Windows
-	CreateDirectory(currentDir->path.c_str(), NULL);
+	CreateDirectory(currentDir->GetPath().c_str(), NULL);
 	
 	//creating the files which are inside the currentDir
 	for (size_t i = 0; i < files.size(); i++) {
-		rename((files[i]->path).c_str(), (currentDir->path +'\\'+ files[i]->name).c_str());
+		rename((files[i]->GetPath()).c_str(), (currentDir->GetPath() +'\\'+ files[i]->GetName()).c_str());
 	}
 			
 	//creating the directories which are in the currentDir recursivly 

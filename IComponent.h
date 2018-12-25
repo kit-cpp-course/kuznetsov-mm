@@ -7,9 +7,12 @@
 class IComponent {
 	//getting the name of the file from its path in the filesystem of Windows
 	virtual std::string GetNameFromPath() = 0;
-public:
+protected:
 	std::string name;
 	std::string path;
+public:
+	std::string GetName() const { return name; }
+	std::string GetPath() const { return path; }
 	virtual bool isFile() const = 0;
 	
 };

@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-using namespace std;
+
 /*
  * Class GlobalData is needed to contain the data which is used in the whole project.
  * In general, it contains the data, which was inputted by a user and some constants. 
@@ -21,17 +21,18 @@ public:
 	//max number of the params for catalogization
 	const size_t MAX_NUMBER_OF_PARAMS = 4;
 	//this array is needed to convert the numbers {0, 1, 2, 3} to the string values (e.g. PARAMETERS_IN_ORDER[0] - "artist")
-	const string* PARAMETERS_IN_ORDER = new string[MAX_NUMBER_OF_PARAMS]{ "artist", "album", "year", "genre" };
+	const std::string* PARAMETERS_IN_ORDER = new std::string[MAX_NUMBER_OF_PARAMS]{ "artist", "album", "year", "genre" };
 
 	//number of params for catalogization, that were set by a user
 	size_t numberOfParams;
 	//the array of params, that were set by a user
-	string* params;
+	std::string* params;
 	//the path to  the folder, where the audiofiles are stored
-	string SourceDirectory; 
+	std::string SourceDirectory;
 	//the path to the folder, where the tree sould be created
-	string DistDirectory;
+	std::string DistDirectory;
 
+	//return the reference to the object of the class
 	static GlobalData& getObject() {
 		static GlobalData a;
 		return a;

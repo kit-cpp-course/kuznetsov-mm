@@ -1,4 +1,6 @@
 #include "ArgumentsValidator.h"
+using namespace std;
+
 bool ArgumentsValidator::CheckPath(string path) {
 	return fs::exists(path);
 }

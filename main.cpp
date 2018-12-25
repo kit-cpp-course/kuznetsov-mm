@@ -11,7 +11,7 @@ using namespace std;
 namespace fs = std::experimental::filesystem;
 
 
-
+int FillVectorOfSongs(vector<shared_ptr<File>>& songs);
 int main(size_t count, char ** args) {
 
 	//the reference to the object of the class, where the global variables are stored
@@ -27,22 +27,8 @@ int main(size_t count, char ** args) {
 	vector<shared_ptr<File>> songs;
 
 	
-	//filling the vector of the songs by the audio files with the extensions of the popular audio files
-	for (const auto & entry : fs::recursive_directory_iterator(gb.SourceDirectory))
-	{
-		string path = entry.path().string(),
-			   ext = entry.path().extension().string();	
-		if (ArgumentsValidator::IsAudio(ext)) {	
-			try {
-				songs.push_back(shared_ptr<File>(new File(path)));
-			}
-			catch (exception ex) {
-				cout << "Couldn't get a metadata from the file: " << path << endl;
-				continue;
-			}
-		}
-			
-	}
+	//filling the vector of the songs by the audio files with the popular extensions of the audio files
+	FillVectorOfSongs(songs);
 
 	//creating the directory where other folders and files will be stored (the root of the tree)
 	shared_ptr<Directory> main(new Directory(gb.DistDirectory));
@@ -60,4 +46,25 @@ int main(size_t count, char ** args) {
 	delete tree;
 	cout << "Music has been succesfully cataloged!" << endl;
 	return 0;
+}
+
+int FillVectorOfSongs(vector<shared_ptr<File>>& songs) {
+	GlobalData& gb = GlobalData::getObject();
+
+	for (const auto & entry : fs::recursive_directory_iterator(gb.SourceDirectory))
+	{
+		string path = entry.path().string(),
+			ext = entry.path().extension().string();
+		if (ArgumentsValidator::IsAudio(ext)) {
+			try {
+				songs.push_back(shared_ptr<File>(new File(path)));
+			}
+			catch (exception ex) {
+				cout << "Couldn't get a metadata from the file: " << path << endl;
+				continue;
+			}
+		}
+
+	}
+
 }

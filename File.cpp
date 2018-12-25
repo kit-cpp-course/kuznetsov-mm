@@ -1,4 +1,5 @@
 #include "File.h"
+using namespace std;
 
 void File::SetParams() {
 	GlobalData& gb = GlobalData::getObject();
@@ -16,7 +17,13 @@ void File::SetParams() {
 			continue;
 		}
 		if (gb.params[i] == "year") {
-			this->params[i] = to_string(f.tag()->year());
+			size_t year = f.tag()->year();
+			if (year == 0) {
+				this->params[i] = "";
+			}
+			else {
+				this->params[i] = to_string(year);
+			}			
 			continue;
 		}
 		if (gb.params[i] == "genre") {			

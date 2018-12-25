@@ -14,25 +14,25 @@ class Tree
 	//nesting depth of the tree 
 	int depth;
 	//the root of the tree
-	shared_ptr<Directory> root;
+	std::shared_ptr<Directory> root;
 	
 	//the recursive adding of the file to the tree
-	void AddRecursive(shared_ptr<Directory>&, shared_ptr<File>&, size_t);
+	void AddRecursive(std::shared_ptr<Directory>&, std::shared_ptr<File>&, size_t);
 
 	//the recursive creating the tree in the filesystem of Windows
-	void CreateRecursive(shared_ptr<Directory>&);
+	void CreateRecursive(std::shared_ptr<Directory>&);
 public:
 	
-	Tree(shared_ptr<Directory>& dir, size_t depthLevel): depth(depthLevel), root(dir) {}
+	Tree(std::shared_ptr<Directory>& dir, size_t depthLevel): depth(depthLevel), root(dir) {}
 
 	//adding of the file to the tree
-	void AddFileToTheTree(shared_ptr<File>& file) {
+	void AddFileToTheTree(std::shared_ptr<File>& file) {
 		int counter = 0;
 		AddRecursive(root, file, counter);
 	}
 
 	//adding of the vector of files to the tree
-	void AddVectorOfFilesToTheTree(vector<shared_ptr<File>>& files) {
+	void AddVectorOfFilesToTheTree(std::vector<std::shared_ptr<File>>& files) {
 		for (size_t i = 0; i < files.size(); i++) AddFileToTheTree(files[i]);		
 	}
 	
