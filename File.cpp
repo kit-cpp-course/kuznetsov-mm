@@ -49,3 +49,28 @@ File::File(string path) {
 	extension = GetExtensionFromPath();
 	SetParams();
 }
+
+File::File(const File& file) {
+	GlobalData& gb = GlobalData::getObject();
+	extension = file.extension;
+	name = file.name;
+	path = file.path;
+	params = new string[gb.numberOfParams];
+	for (size_t i = 0; i < gb.numberOfParams; i++)
+	{
+		params[i] = file.params[i];
+	}
+}
+
+File& File::operator=(const File& file) {
+	GlobalData& gb = GlobalData::getObject();
+	extension = file.extension;
+	name = file.name;
+	path = file.path;
+	params = new string[gb.numberOfParams];
+	for (size_t i = 0; i < gb.numberOfParams; i++)
+	{
+		params[i] = file.params[i];
+	}
+	return *this;
+}

@@ -36,6 +36,12 @@ public:
 	//constructor which takes a path as a parameter
 	File(std::string path);
 
+	//copy constructor
+	File(const File& file);
+
+	//assignment operator
+	File& operator=(const File& file); 
+
 	bool IComponent::isFile() const { return true; }
 	
 	//return the array of the parameters of the object
